@@ -17,7 +17,7 @@ node('master') {
                                                           
                                                           def props = readProperties file: 'PropertiesFile.properties'
                                                           
-                                                          AppUrl=props.APP_GIT_URL
+                                                          AppUrl=props.GIT_URL
                            
                                            }
                              }

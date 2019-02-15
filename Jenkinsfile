@@ -18,7 +18,7 @@ node('master') {
                                                           def props = readProperties file: 'PropertiesFile.properties'
                                                           
                                                           AppUrl=props.APP_GIT_URL
-                                                          TerrPath=props.TERR_PATH
+                           
                                            }
                              }
                              
@@ -48,11 +48,6 @@ node('master') {
                              }
                              
                              
-                             dir(TerrPath) {
-                                           stage('Terraform'){
-                                                          sh "/usr/local/bin/terraform apply -auto-approve -var-file=../modulone.tfvars"
-                                           }
-                             }
 
                              stage('Deployment'){
                                sh 'sudo cp target/*.war /root/Tomcat/apache-tomcat-8.5.37/webapps'

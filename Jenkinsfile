@@ -24,6 +24,7 @@ node('master') {
 						   	ArtifactoryPath =props.Artifactory_ID
 						   	UserName=props.username
 						   	Password=props.Password
+						   TerrPath=props.TerraformPAth
                            
                                            }
                              }
@@ -52,7 +53,13 @@ node('master') {
 						  ]
 					      }"""
                              }
-                             
+                             dir(TerrPath) {
+                                           stage('Terraform'){
+                                                          sh "/usr/local/bin/terraform apply -auto-approve -var-file=../modulone.tfvars"
+                                                          sh "terraform output aws_instance_public_dns > /root/Ansible/aws_dns_name.txt"
+                                           }
+                             }
+
                              
 
                              stage('Deployment'){

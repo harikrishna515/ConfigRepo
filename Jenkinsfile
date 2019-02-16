@@ -4,6 +4,9 @@ node('master') {
               
               def AppUrl
               def TerrPath
+		def ArtifactoryPath
+		def UserName
+		def Password
 
               try{
               
@@ -18,6 +21,9 @@ node('master') {
                                                           def props = readProperties file: 'PropertiesFile.properties'
                                                           
                                                           AppUrl=props.GIT_URL
+						   	ArtifactoryPath =props.Artifactory_ID
+						   	UserName=props.username
+						   	Password=props.Password
                            
                                            }
                              }
@@ -36,7 +42,7 @@ node('master') {
                              }
                              
                              stage('Build Management'){
-                                           def server = Artifactory.newServer url:'http://localhost:8081/artifactory', username: 'admin', password: 'password'
+                                           def server = Artifactory.newServer url:ArtifactoryPath, username: UserName, password: Password
 					      def uploadSpec = """{
 						 "files": [
 						     {

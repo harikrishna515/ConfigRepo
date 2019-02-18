@@ -53,12 +53,7 @@ node('master') {
 						  ]
 					      }"""
                              }
-                             dir(TerrPath) {
-                                           stage('Terraform'){
-                                                          sh "/usr/local/bin/terraform apply -auto-approve -var-file=../modulone.tfvars"
-                                                          
-                                           }
-                             }
+                             
 
                              
 
